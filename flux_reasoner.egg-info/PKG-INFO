@@ -1,0 +1,8 @@
+Metadata-Version: 2.4
+Name: flux-reasoner
+Version: 0.1.0
+Summary: Dual-interpreter gradient reasoning engine
+Project-URL: Homepage, https://github.com/SuperInstance/flux-reasoner
+Project-URL: Repository, https://github.com/SuperInstance/flux-reasoner
+Requires-Python: >=3.10
+Requires-Dist: requests>=2.28

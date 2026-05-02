@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "flux-reasoner"
+version = "0.1.0"
+description = "Dual-interpreter gradient reasoning engine"
+requires-python = ">=3.10"
+dependencies = ["requests>=2.28"]
+
+[project.urls]
+Homepage = "https://github.com/SuperInstance/flux-reasoner"
+Repository = "https://github.com/SuperInstance/flux-reasoner"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["flux_reasoner*"]
