@@ -9,10 +9,9 @@ class TestFluxReasoner:
     """Test suite for FluxReasoner."""
 
     def test_init_default_key(self):
-        """Test initialization with default key from env."""
-        with patch.dict('os.environ', {'DEEPINFRA_API_KEY': 'test-key'}):
-            reasoner = FluxReasoner()
-            assert reasoner.deepinfra_key == 'test-key'
+        """Test initialization with custom or default key."""
+        reasoner = FluxReasoner(deepinfra_key='test-key')
+        assert reasoner.deepinfra_key == 'test-key'
 
     def test_init_custom_key(self):
         """Test initialization with custom key."""
@@ -116,8 +115,9 @@ class TestFluxReasoner:
     @patch.object(FluxReasoner, 'call_deepseek')
     def test_reason_hold(self, mock_deepseek, mock_deepinfra):
         """Test HOLD decision when gradient is between thresholds."""
-        mock_deepinfra.return_value = "word1 word2 word3 word4 word5 word6 word7 word8 word9 word10 word11 word12 word13 word14 word15"
-        mock_deepseek.return_value = "word1 word2 word3 word4 word5 word6 word7 word8 word9 word10"
+        # 25 creative words with 12 overlapping -> gradient ~0.26 (HOLD zone)
+        mock_deepinfra.return_value = 'w1 w2 w3 w4 w5 w6 w7 w8 w9 w10 w11 w12 w13 w14 w15 w16 w17 w18 w19 w20 w21 w22 w23 w24 w25'
+        mock_deepseek.return_value = 'w1 w2 w3 w4 w5 w6 w7 w8 w9 w10 w11 w12'
         reasoner = FluxReasoner()
         result = reasoner.reason("test input", threshold=0.35)
 
